@@ -1190,7 +1190,7 @@ var addressPoints = [
 [48.8844, 2.2489, 20820, 1513714, "52 QUAI DION BOUTON 92800 PUTEAUX", "1800 MHz (4G), 2100 MHz (4G), 2600 MHz (4G), 700 MHz (4G), 800 MHz (4G), 2100 MHz (5G), 3500 MHz (5G)", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['22/04/2022'];
 var dataset = ['S16 2022 [19]'];
 var news = ['1135'];
 var acti = ['602'];

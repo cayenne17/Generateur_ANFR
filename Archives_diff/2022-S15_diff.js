@@ -1586,7 +1586,7 @@ var addressPoints = [
 [-21.1589, 55.7644, 99999, 1520003, "Route des Radiers (Les Reservoirs) 97439 STE ROSE", "1800 MHz (4G) [SRR], 2600 MHz (4G) [SRR], 800 MHz (4G) [SRR]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['15/04/2022'];
 var dataset = ['S15 2022 [18]'];
 var news = ['1017'];
 var acti = ['944'];

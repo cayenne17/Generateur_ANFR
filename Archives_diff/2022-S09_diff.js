@@ -1483,7 +1483,7 @@ var addressPoints = [
 [-17.5658, -149.3278, 99999, 2112571, "PK32 (Mahaena) 98705 HITIAA O TE RA", "800 MHz (4G) [ONAT]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['07/03/2022'];
 var dataset = ['S09 2022 [12]'];
 var news = ['1079'];
 var acti = ['707'];

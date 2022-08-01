@@ -1413,7 +1413,7 @@ var addressPoints = [
 [15.8472, -61.6453, 99999, 1058825, "Petites Anses r de la Grotte (Les Saintes) 97136 TERRE DE BAS", "1800 MHz (4G) [ORA], 2600 MHz (4G) [ORA], 800 MHz (4G) [ORA]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['25/02/2022'];
 var dataset = ['S08 2022 [11]'];
 var news = ['738'];
 var acti = ['821'];

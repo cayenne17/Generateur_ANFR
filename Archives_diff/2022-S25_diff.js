@@ -1553,7 +1553,7 @@ var addressPoints = [
 [-12.7889, 45.1772, 99999, 2614477, "5 rue du bassin (Vahibeni) 97600 MAMOUDZOU", "1800 MHz (4G) [TLOI], 800 MHz (4G) [TLOI]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['24/06/2022'];
 var dataset = ['S25 2022 [27]'];
 var news = ['1574'];
 var acti = ['693'];

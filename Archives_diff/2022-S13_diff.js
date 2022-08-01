@@ -1510,7 +1510,7 @@ var addressPoints = [
 [48.87, 2.4381, 20820, 2124870, "27 R LÉON LOISEAU 93100 MONTREUIL", "1800 MHz (4G), 2100 MHz (4G), 2600 MHz (4G), 700 MHz (4G), 800 MHz (4G), 2100 MHz (5G)", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['01/04/2022'];
 var dataset = ['S13 2022 [16]'];
 var news = ['939'];
 var acti = ['608'];

@@ -2428,7 +2428,7 @@ var addressPoints = [
 [-21.0869, 55.2667, 99999, 1326499, "La Saline les Hauts CD 9 97411 ST PAUL", "1800 MHz (4G) [ZEOP], 2100 MHz (4G) [ZEOP], 2600 MHz (4G) [ZEOP], 700 MHz (4G) [ZEOP]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['01/07/2022'];
 var dataset = ['S26 2022 [28]'];
 var news = ['1014'];
 var acti = ['1323'];

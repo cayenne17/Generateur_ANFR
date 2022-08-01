@@ -1393,7 +1393,7 @@ var addressPoints = [
 [-21.3083, 55.4328, 99999, 2131807, "30 ROUTE DE PIERREFOND 97432 ST PIERRE", "1800 MHz (4G) [TLOI], 800 MHz (4G) [TLOI]", "-", 0],
 ];
 
-var update = ['15/07/2022'];
+var update = ['14/01/2022'];
 var dataset = ['S02 2022 [3]'];
 var news = ['1070'];
 var acti = ['490'];

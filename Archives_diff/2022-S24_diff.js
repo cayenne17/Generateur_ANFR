@@ -1436,7 +1436,7 @@ var addressPoints = [
 [-20.955, 55.3067, 99999, 2517857, "r pierre brossolette Temple Hindou (Rivière des Galets) 97420 LE PORT", "2100 MHz (4G) [ORA]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['17/06/2022'];
 var dataset = ['S24 2022 [26]'];
 var news = ['1467'];
 var acti = ['376'];
