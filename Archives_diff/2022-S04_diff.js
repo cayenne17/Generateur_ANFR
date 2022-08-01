@@ -1032,7 +1032,7 @@ var addressPoints = [
 [-21.0219, 55.2706, 99999, 348983, "SHLMR BAT N°3 (LES COTEAUX DU BERNICA) 97434 ST PAUL", "1800 MHz (4G) [SRR], 2600 MHz (4G) [SRR], 800 MHz (4G) [SRR]", "-", 0],
 ];
 
-var update = ['15/07/2022'];
+var update = ['28/01/2022'];
 var dataset = ['S04 2022 [5]'];
 var news = ['840'];
 var acti = ['376'];

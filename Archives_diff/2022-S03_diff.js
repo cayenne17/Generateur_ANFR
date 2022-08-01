@@ -1521,7 +1521,7 @@ var addressPoints = [
 [18.1022, -63.0386, 99999, 1040120, "Cul de Sac (Pea Tree Hill) 97801 ST MARTIN", "1800 MHz (4G) [ORA]", "-", 0],
 ];
 
-var update = ['15/07/2022'];
+var update = ['21/01/2022'];
 var dataset = ['S03 2022 [4]'];
 var news = ['830'];
 var acti = ['1029'];

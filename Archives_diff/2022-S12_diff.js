@@ -1551,7 +1551,7 @@ var addressPoints = [
 [-20.8944, 55.4578, 99999, 583225, "39 BD DE LA PROVIDENCE LA PROVIDENCE 97400 ST DENIS", "1800 MHz (4G) [SRR], 2600 MHz (4G) [SRR], 800 MHz (4G) [SRR]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['25/03/2022'];
 var dataset = ['S12 2022 [15]'];
 var news = ['1069'];
 var acti = ['719'];

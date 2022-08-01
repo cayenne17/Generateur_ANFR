@@ -1392,7 +1392,7 @@ var addressPoints = [
 [-17.7372, -149.2264, 99999, 1870024, "Marina communal pk9.5 iti Est (Pueu) 98722 TAIARAPU EST", "2100 MHz (4G) [PMT], 800 MHz (4G) [PMT]", "-", 0],
 ];
 
-var update = ['15/07/2022'];
+var update = ['04/02/2022'];
 var dataset = ['S05 2022 [6]'];
 var news = ['42'];
 var acti = ['1036'];

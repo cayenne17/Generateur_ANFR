@@ -860,7 +860,7 @@ var addressPoints = [
 [16.2369, -61.5378, 99999, 1006768, "50 Rue Achile René Boisneuf 97110 POINTE A PITRE", "1800 MHz (4G) [OUTR], 2600 MHz (4G) [OUTR], 800 MHz (4G) [OUTR]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['08/04/2022'];
 var dataset = ['S14 2022 [17]'];
 var news = ['843'];
 var acti = ['306'];

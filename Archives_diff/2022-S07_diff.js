@@ -2303,7 +2303,7 @@ var addressPoints = [
 [-17.73, -149.5792, 99999, 606307, "usine AVATEA (Maraa 2) 98711 PAEA", "800 MHz (4G) [ONAT]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['18/02/2022'];
 var dataset = ['S07 2022 [10]'];
 var news = ['842'];
 var acti = ['1981'];

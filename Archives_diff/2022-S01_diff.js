@@ -2107,7 +2107,7 @@ var addressPoints = [
 [4.9367, -52.3253, 99999, 1795724, "Mirza r gippet (cité des Floralies) 97300 CAYENNE", "1800 MHz (4G) [ORA], 2600 MHz (4G) [ORA]", "-", 0],
 ];
 
-var update = ['15/07/2022'];
+var update = ['07/01/2022'];
 var dataset = ['S01 2022 [2]'];
 var news = ['1061'];
 var acti = ['1456'];

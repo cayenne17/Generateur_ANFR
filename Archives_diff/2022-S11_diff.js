@@ -1381,7 +1381,7 @@ var addressPoints = [
 [-17.5569, -149.6042, 99999, 2089311, "(RADIO_TEFANA) 98704 FAAA", "2600 MHz (4G) [ONAT], 800 MHz (4G) [ONAT]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['18/03/2022'];
 var dataset = ['S11 2022 [14]'];
 var news = ['806'];
 var acti = ['764'];

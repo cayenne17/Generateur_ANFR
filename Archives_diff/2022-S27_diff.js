@@ -1583,7 +1583,7 @@ var addressPoints = [
 [48.7903, 2.3447, 20820, 485050, "A 6 PK 3,1 sens Province/Paris 94240 L HAY LES ROSES", "1800 MHz (4G), 800 MHz (4G), 2100 MHz (5G)", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['08/07/2022'];
 var dataset = ['S27 2022 [29]'];
 var news = ['1212'];
 var acti = ['979'];

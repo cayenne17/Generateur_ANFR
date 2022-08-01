@@ -1202,7 +1202,7 @@ var addressPoints = [
 [-17.7486, -149.5625, 99999, 2237396, "TIAMAO pk 29.200 côté mer (MARAA) 98712 PAPARA", "800 MHz (4G) [VITI]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['13/05/2022'];
 var dataset = ['S19 2022 [22]'];
 var news = ['1227'];
 var acti = ['532'];

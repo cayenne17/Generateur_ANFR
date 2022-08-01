@@ -1505,7 +1505,7 @@ var addressPoints = [
 [48.8992, 2.2456, 20820, 2612668, "29 AV MARCEAU 92400 COURBEVOIE", "1800 MHz (4G), 2100 MHz (4G), 2600 MHz (4G), 700 MHz (4G), 800 MHz (4G), 2100 MHz (5G), 3500 MHz (5G)", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['09/05/2022'];
 var dataset = ['S18 2022 [21]'];
 var news = ['1206'];
 var acti = ['543'];

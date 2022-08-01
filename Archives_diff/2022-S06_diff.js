@@ -1227,7 +1227,7 @@ var addressPoints = [
 [-17.5158, -149.5025, 99999, 606380, "lot oviri (Taharaa) 98709 MAHINA", "2600 MHz (4G) [ONAT], 800 MHz (4G) [ONAT]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['11/02/2022'];
 var dataset = ['S06 2022 [8]'];
 var news = ['1362'];
 var acti = ['436'];

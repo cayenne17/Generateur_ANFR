@@ -1196,7 +1196,7 @@ var addressPoints = [
 [14.6142, -61.0128, 99999, 482581, "Z.I. Les Mangles N.1 (Z.I. Les Mangles) 97232 LE LAMENTIN", "1800 MHz (4G) [ORA], 2600 MHz (4G) [ORA], 800 MHz (4G) [ORA]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['20/05/2022'];
 var dataset = ['S20 2022 [23]'];
 var news = ['957'];
 var acti = ['689'];

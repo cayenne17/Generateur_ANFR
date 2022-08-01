@@ -1194,7 +1194,7 @@ var addressPoints = [
 [-20.9047, 55.6022, 99999, 2254682, "Allée des Orchidées (BEL AIR) 97441 STE SUZANNE", "1800 MHz (4G) [ZEOP], 2100 MHz (4G) [ZEOP], 2600 MHz (4G) [ZEOP]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['11/03/2022'];
 var dataset = ['S10 2022 [13]'];
 var news = ['875'];
 var acti = ['551'];

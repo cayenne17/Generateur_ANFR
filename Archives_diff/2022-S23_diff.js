@@ -1536,7 +1536,7 @@ var addressPoints = [
 [4.7275, -52.3203, 99999, 656548, "Près reservoir (Montagne Roura) 97311 ROURA", "1800 MHz (4G) [OUTR], 2600 MHz (4G) [OUTR], 800 MHz (4G) [OUTR]", "-", 0],
 ];
 
-var update = ['16/07/2022'];
+var update = ['10/06/2022'];
 var dataset = ['S23 2022 [25]'];
 var news = ['1356'];
 var acti = ['637'];
