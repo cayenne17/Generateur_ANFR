@@ -70,7 +70,7 @@
 			Zoom = 5;
 		}else{
 			latlng = L.latLng(Lat, Lon);
-
+		}
 		var map = L.map('map', {center: latlng, zoom: Zoom, layers: [tiles]});
 
 		L.control.scale({metric: true, imperial: false}).addTo(map);	// Ajouter l'échelle 
