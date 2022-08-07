@@ -39,7 +39,7 @@
 
     <div id="map" style="width: 100%; height: 70vh; border: 1px solid #ccc;"></div>
     <span><br><b>Modifications ANFR hebdomadaires</b>
-		<br>Mise à jour <span id='dataset'></span> du <span id='update'></span>&nbsp;&nbsp;-> Source : <a href="https://data.anfr.fr/anfr/portail" >Open data ANFR</a>
+		<br>Mise à jour <span id='dataset'></span> du <span id='update'></span>&nbsp;&nbsp;-> Source : <a href="https://data.anfr.fr/anfr/visualisation/export/?id=observatoire_2g_3g_4g" >Opendata Observatoire ANFR</a>
 		<br>
 		<br>4G: <span id='news'></span> fréquences ajoutées, <span id='acti'></span> fréquences activées
 	    <br>4G: <span id='supp'></span> fréquences supprimées, <span id='off'></span> fréquences éteintes
