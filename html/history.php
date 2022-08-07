@@ -39,7 +39,7 @@
 
     <div id="map" style="width: 100%; height: 70vh; border: 1px solid #ccc;"></div>
     <span><br><b>Modifications ANFR hebdomadaires</b>
-		<br>Mise à jour <span id='dataset'></span> du <span id='update'></span>&nbsp;&nbsp;-> Source : <a href="https://data.anfr.fr/anfr/portail" >Open data ANFR</a>
+		<br>Mise à jour <span id='dataset'></span> du <span id='update'></span>&nbsp;&nbsp;-> Source : <a href="https://data.anfr.fr/anfr/visualisation/export/?id=observatoire_2g_3g_4g" >Opendata Observatoire ANFR</a>
 		<br>
 		<br>4G: <span id='news'></span> fréquences ajoutées, <span id='acti'></span> fréquences activées
 	    <br>4G: <span id='supp'></span> fréquences supprimées, <span id='off'></span> fréquences éteintes
@@ -59,16 +59,68 @@
 		
 	<script type="text/javascript">
 
-		var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				minZoom: 3,
-				maxZoom: 15,
-				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
-			}),
+
+		// Plan IGN
+		var PlanIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}',	{
+			ignApiKey: 'decouverte',
+			ignLayer: 'GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2',
+			style: 'normal',
+			format: 'image/png',
+			service: 'WMTS',
+			attribution: '&copy; <a target="_blank" rel="noreferrer noopener" href="https://www.ign.fr"><img class="gp-control-attribution-image" src="https://wxs.ign.fr/static/logos/IGN/IGN.gif" title="Institut national de l\'information géographique et forestière" style="height: 30px; width: 30px;"></a> '
+		});
+
+		// Photographies aériennes Ortho IGN
+		var OrthoIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
+			ignApiKey: 'decouverte',
+			ignLayer: 'ORTHOIMAGERY.ORTHOPHOTOS',
+			style: 'normal',
+			format: 'image/jpeg',
+			service: 'WMTS',
+			attribution: '&copy; <a target="_blank" rel="noreferrer noopener" href="https://www.ign.fr"><img class="gp-control-attribution-image" src="https://wxs.ign.fr/static/logos/IGN/IGN.gif" title="Institut national de l\'information géographique et forestière" style="height: 30px; width: 30px;"></a> '
+		});
+
+		// OSM FR
+		var OSM_FR = L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+			minZoom: 3,
+			maxZoom: 18,
+			attribution: 'donn&eacute;es &copy; <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a> ',
+		});
+
+		// OSM Default
+		var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			minZoom: 3,
+			maxZoom: 18,
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
+		});
+
+		Lat="<?php echo $_GET['lat'];?>";   Lon="<?php echo $_GET['lon'];?>";   Zoom = "<?php echo $_GET['zoom'];?>"; //definition variable GET lat, lon, zoom
+		if (Lat.length === 0 || isNaN(Lat) || Lon.length === 0 || isNaN(Lon) || Zoom.length === 0 || isNaN(Zoom)){
 			latlng = L.latLng(46.45, 2.25);
+			Zoom = 5;
+		}else{
+			latlng = L.latLng(Lat, Lon);
+		}
+		
+		var map = L.map('map', {center: latlng, zoom: Zoom, layers: [OSM_FR]});
 
-		var map = L.map('map', {center: latlng, zoom: 5, layers: [tiles]});
-
+		var baseLayers = {
+			"OSM": OSM,
+			"OSM FR": OSM_FR,
+			"Plan IGN": PlanIGN,
+			"Ortho IGN": OrthoIGN
+		};
+		L.control.layers(baseLayers).addTo(map);
 		L.control.scale({metric: true, imperial: false}).addTo(map);	// Ajouter l'échelle 
+		
+		
+		var queryParams = new URLSearchParams(window.location.search);
+		queryParams.set("lat", map.getCenter().lat.toFixed(4)); queryParams.set("lon", map.getCenter().lng.toFixed(4));
+		queryParams.set("zoom", map.getZoom());
+		history.replaceState(null, null, "?"+queryParams.toString());
+		
+		map.on("moveend", function (e) { queryParams.set("lat", map.getCenter().lat.toFixed(4)); queryParams.set("lon", map.getCenter().lng.toFixed(4)); history.replaceState(null, null, "?"+queryParams.toString());}); // à chaque évenement de mouvement de carte, mettre à jour les variable get 'lat' et 'lon'.
+		map.on("zoomend", function (e) { queryParams.set("zoom", map.getZoom()); history.replaceState(null, null, "?"+queryParams.toString());}); // à chaque évenement de zoom sur la carte, mettre à jour la variable get zoom.
 
 		//custom icon
         var sfrIcon = L.icon({
@@ -167,7 +219,7 @@
 			var title;
 			var icone;
 			if (a[7]==0) {
-				title = "Support #"+a[3] + "<br>"+a[4]+ "<br>Suppression: "+a[5]+ "<br>Extinction: "+a[6];
+				title = "Support <a href='https://data.anfr.fr/anfr/visualisation/map/?id=observatoire_2g_3g_4g&refine.SUP_ID=" +a[3]+ "' target='_blank' rel='noreferrer noopener'>#" +a[3]+ "</a> &#160&#160 <a href='https://data.anfr.fr/anfr/visualisation/map/?id=observatoire_2g_3g_4g&location=18," +a[0]+ "," +a[1]+ "' target='_blank' rel='noreferrer noopener'>data.anfr.fr</a> &#160&#160 <a href='https://www.cartoradio.fr/index.html#/cartographie/lonlat/" +a[1]+ "/" +a[0] + "' target='_blank' rel='noreferrer noopener'>Cartoradio</a><br>"+a[4]+ "<br>Suppression: "+a[5]+ "<br>Extinction: "+a[6];
 				if (a[2]==20820) {
 					icone = ripBlue;
 				} else if (a[2]==20810) {
@@ -180,7 +232,7 @@
 					icone = ripBlack;
 				}
 			} else {
-				title = "Support #"+a[3] + "<br>"+a[4]+ "<br>Nouveau: "+a[5]+ "<br>Activation: "+a[6];
+				title = "Support <a href='https://data.anfr.fr/anfr/visualisation/map/?id=observatoire_2g_3g_4g&refine.SUP_ID=" +a[3]+ "' target='_blank' rel='noreferrer noopener'>#" +a[3]+ "</a> &#160&#160 <a href='https://data.anfr.fr/anfr/visualisation/map/?id=observatoire_2g_3g_4g&location=18," +a[0]+ "," +a[1]+ "' target='_blank' rel='noreferrer noopener'>data.anfr.fr</a> &#160&#160 <a href='https://www.cartoradio.fr/index.html#/cartographie/lonlat/" +a[1]+ "/" +a[0] + "' target='_blank' rel='noreferrer noopener'>Cartoradio</a><br>"+a[4]+ "<br>Nouveau: "+a[5]+ "<br>Activation: "+a[6];
 				if (a[2]==20820) {
 					icone = blueIcon;
 				} else if (a[2]==20810) {
