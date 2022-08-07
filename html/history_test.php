@@ -64,11 +64,24 @@
 				maxZoom: 15,
 				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
 			}),
+		Lat="<?php echo $_GET['lat'];?>";   Lon="<?php echo $_GET['lon'];?>";   Zoom = "<?php echo $_GET['zoom'];?>"; //definition variable GET lat, lon, zoom
+		if (Lat.length === 0 || isNaN(Lat) || Lon.length === 0 || isNaN(Lon) || Zoom.length === 0 || isNaN(Zoom)){
 			latlng = L.latLng(46.45, 2.25);
+			Zoom = 5;
+		}else{
+			latlng = L.latLng(Lat, Lon);
 
-		var map = L.map('map', {center: latlng, zoom: 5, layers: [tiles]});
+		var map = L.map('map', {center: latlng, zoom: Zoom, layers: [tiles]});
 
 		L.control.scale({metric: true, imperial: false}).addTo(map);	// Ajouter l'échelle 
+		
+		var queryParams = new URLSearchParams(window.location.search);
+		queryParams.set("lat", map.getCenter().lat.toFixed(4)); queryParams.set("lon", map.getCenter().lng.toFixed(4));
+		queryParams.set("zoom", map.getZoom());
+		history.replaceState(null, null, "?"+queryParams.toString());
+		
+		map.on("moveend", function (e) { queryParams.set("lat", map.getCenter().lat.toFixed(4)); queryParams.set("lon", map.getCenter().lng.toFixed(4)); history.replaceState(null, null, "?"+queryParams.toString());}); // à chaque évenement de mouvement de carte, mettre à jour les variable get 'lat' et 'lon'.
+		map.on("zoomend", function (e) { queryParams.set("zoom", map.getZoom()); history.replaceState(null, null, "?"+queryParams.toString());}); // à chaque évenement de zoom sur la carte, mettre à jour la variable get zoom.
 
 		//custom icon
         var sfrIcon = L.icon({
