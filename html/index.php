@@ -96,8 +96,8 @@
 
 		Lat="<?php echo $_GET['lat'];?>";   Lon="<?php echo $_GET['lon'];?>";   Zoom = "<?php echo $_GET['zoom'];?>"; //definition variable GET lat, lon, zoom
 		if (Lat.length === 0 || isNaN(Lat) || Lon.length === 0 || isNaN(Lon) || Zoom.length === 0 || isNaN(Zoom)){
-			latlng = L.latLng(46.45, 2.25);
-			Zoom = 5;
+			latlng = L.latLng(46.5, 1);
+			Zoom = 6;
 		}else{
 			latlng = L.latLng(Lat, Lon);
 		}
