@@ -96,13 +96,13 @@
 
 		Lat="<?php echo $_GET['lat'];?>";   Lon="<?php echo $_GET['lon'];?>";   Zoom = "<?php echo $_GET['zoom'];?>"; //definition variable GET lat, lon, zoom
 		if (Lat.length === 0 || isNaN(Lat) || Lon.length === 0 || isNaN(Lon) || Zoom.length === 0 || isNaN(Zoom)){
-			latlng = L.latLng(46.5, 1);
+			latlng = L.latLng(46.5, 2);
 			Zoom = 6;
 		}else{
 			latlng = L.latLng(Lat, Lon);
 		}
 		
-		var map = L.map('map', {center: latlng, zoom: Zoom, layers: [OSM_FR]});
+		var map = L.map('map', {center: latlng, zoom: Zoom, layers: [OSM]});
 
 		var baseLayers = {
 			"OSM": OSM,
