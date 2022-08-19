@@ -227,6 +227,7 @@
 				} else if (a[2]==20801) {
 					icone = ripOrange;
 				} else if (a[2]==20815) {
+					title = "Support <a href='https://data.anfr.fr/anfr/visualisation/map/?id=observatoire_2g_3g_4g&refine.SUP_ID=" +a[3]+ "' target='_blank' rel='noreferrer noopener'>#" +a[3]+ "</a> &#160&#160 <a href='https://data.anfr.fr/anfr/visualisation/map/?id=observatoire_2g_3g_4g&location=18," +a[0]+ "," +a[1]+ "' target='_blank' rel='noreferrer noopener'>data.anfr.fr</a> &#160&#160 <a href='https://www.cartoradio.fr/index.html#/cartographie/lonlat/" +a[1]+ "/" +a[0] + "' target='_blank' rel='noreferrer noopener'>Cartoradio</a>&#160&#160 <a href='https://rncmobile.net/site/" +a[0]+ "," +a[1] + "' target='_blank' rel='noreferrer noopener'>RNCMobile</a><br>"+a[4]+ "<br>Suppression: "+a[5]+ "<br>Extinction: "+a[6];
 					icone = ripGrey;
 				} else {
 					icone = ripBlack;
@@ -240,6 +241,7 @@
 				} else if (a[2]==20801) {
 					icone = orangeIcon;
 				} else if (a[2]==20815) {
+					title = "Support <a href='https://data.anfr.fr/anfr/visualisation/map/?id=observatoire_2g_3g_4g&refine.SUP_ID=" +a[3]+ "' target='_blank' rel='noreferrer noopener'>#" +a[3]+ "</a> &#160&#160 <a href='https://data.anfr.fr/anfr/visualisation/map/?id=observatoire_2g_3g_4g&location=18," +a[0]+ "," +a[1]+ "' target='_blank' rel='noreferrer noopener'>data.anfr.fr</a> &#160&#160 <a href='https://www.cartoradio.fr/index.html#/cartographie/lonlat/" +a[1]+ "/" +a[0] + "' target='_blank' rel='noreferrer noopener'>Cartoradio</a>&#160&#160 <a href='https://rncmobile.net/site/" +a[0]+ "," +a[1] + "' target='_blank' rel='noreferrer noopener'>RNCMobile</a><br>"+a[4]+ "<br>Nouveau: "+a[5]+ "<br>Activation: "+a[6];
 					icone = freeIcon;
 				} else {
 					icone = blackIcon;
