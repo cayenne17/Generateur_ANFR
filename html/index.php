@@ -93,9 +93,12 @@
 			maxZoom: 18,
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
 		});
-
-		Lat="<?php echo $_GET['lat'];?>";   Lon="<?php echo $_GET['lon'];?>";   Zoom = "<?php echo $_GET['zoom'];?>"; //definition variable GET lat, lon, zoom
-		if (Lat.length === 0 || isNaN(Lat) || Lon.length === 0 || isNaN(Lon) || Zoom.length === 0 || isNaN(Zoom)){
+		
+		var queryParams = new URLSearchParams(window.location.search);
+		Lat=queryParams.get("lat");   Lon=queryParams.get("lon");   Zoom=queryParams.get("zoom");
+		//Lat="<?php echo $_GET['lat'];?>";   Lon="<?php echo $_GET['lon'];?>";   Zoom = "<?php echo $_GET['zoom'];?>"; //definition variable GET lat, lon, zoom
+		//if (Lat.length === 0 || isNaN(Lat) || Lon.length === 0 || isNaN(Lon) || Zoom.length === 0 || isNaN(Zoom)){
+		if (!Lat || isNaN(Lat) || !Lon || isNaN(Lon) || !Zoom || isNaN(Zoom)){ //https://stackoverflow.com/questions/5515310/is-there-a-standard-function-to-check-for-null-undefined-or-blank-variables-in
 			latlng = L.latLng(46.5, 2);
 			Zoom = 6;
 		}else{
