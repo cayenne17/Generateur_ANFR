@@ -50,9 +50,9 @@
 	<script src="./assets/js/jquery-min.js"></script>
 	<?php	
 		if (empty($_GET["v"])){
-			$path_script_diff='./assets/data/diff.js';
+			$path_script_diff='./assets/data/diff_ANFR/diff.js';
 		} else {
-			$path_script_diff='./assets/data/' . $_GET["v"] . '_diff.js';
+			$path_script_diff='./assets/data/diff_ANFR/Archives_diff/' . $_GET["v"] . '_diff.js';
 		}
 	?>
 	<script src="<?php echo "$path_script_diff";?>"></script>
