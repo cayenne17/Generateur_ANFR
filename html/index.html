@@ -48,14 +48,14 @@
 	</span>
 	
 	<script src="./assets/js/jquery-min.js"></script>
-	<?php	
+	<!-- ?php	
 		if (empty($_GET["v"])){
 			$path_script_diff='./assets/data/diff_ANFR/diff.js';
 		} else {
 			$path_script_diff='./assets/data/diff_ANFR/Archives_diff/' . $_GET["v"] . '_diff.js';
 		}
 	?>
-	<script src="<?php echo "$path_script_diff";?>"></script>
+	<script src="?php echo "$path_script_diff";?>"></script>-->
 		
 	<script type="text/javascript">
 
@@ -95,7 +95,16 @@
 		});
 		
 		var queryParams = new URLSearchParams(window.location.search);
-		Lat=queryParams.get("lat");   Lon=queryParams.get("lon");   Zoom=queryParams.get("zoom"); //definition variable GET lat, lon, zoom
+		V=queryParams.get("v");   Lat=queryParams.get("lat");   Lon=queryParams.get("lon");   Zoom=queryParams.get("zoom"); //definition variable GET lat, lon, zoom
+		if (!V){
+			path_script_diff = "./assets/data/diff_ANFR/diff.js";
+		}else{
+			path_script_diff = "./assets/data/diff_ANFR/Archives_diff/"+V+"_diff.js";
+		}
+		
+		document.write("<script type='text/javascript' src="+path_script_diff+"><\/script>"); //charge le script de la BDD
+	</script><script type="text/javascript">
+		
 		if (!Lat || isNaN(Lat) || !Lon || isNaN(Lon) || !Zoom || isNaN(Zoom)){ //https://stackoverflow.com/questions/5515310/is-there-a-standard-function-to-check-for-null-undefined-or-blank-variables-in
 			latlng = L.latLng(46.5, 2);
 			Zoom = 6;
