@@ -141,7 +141,7 @@
 		}else{
 			latlng = L.latLng(Lat, Lon);
 		}
-		var OrthoPlanGroup = L.layerGroup([OrthoIGN, OrthoIGN_city, OrthoIGN_street]);
+		var OrthoPlanGroup = L.layerGroup([OrthoIGN, OrthoIGN_street, OrthoIGN_city]);
 		var map = L.map('map', {center: latlng, zoom: Zoom, layers: [OSM]});
 
 		var baseLayers = {
