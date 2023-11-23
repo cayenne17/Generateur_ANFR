@@ -315,7 +315,8 @@ public class A_Generateur_ANFR {
                 while ((line = reader.readLine()) != null) {
                     step1Read++;
                     //System.out.println(TAG+ "line="+line);
-                    String[] tokens = line.split(";");  //split by ';'
+                    //String[] tokens = line.split(";");  //split by ';'
+                    String[] tokens = line.split(",");  //temp split by ','
                     String systeme = tokens[SYSTEME];
 
                     if(tokens[OPERAT].equals(opLong) && (systeme.contains("LTE") || systeme.contains("NR"))) {
@@ -679,7 +680,8 @@ public class A_Generateur_ANFR {
             try {
                 while ((line = reader.readLine()) != null && count<2) {
                     count++;
-                    String[] tokens = line.split(";");  // Split by ';'
+                    //String[] tokens = line.split(";");  // Split by ';'
+                    String[] tokens = line.split(",");  //temp Split by ','
                     if (count==1) {
                         //ligne d'en-tête
                         for (byte i = 0; i <= tokens.length-1; i++) {
