@@ -306,17 +306,25 @@ public class A_Generateur_ANFR {
             String anfrAdresse1, anfrAdresse2, anfrAdresseLieu, cPostal;
             int step1Read=1,step2wrtite = 0;
             double anfrLat, anfrLon;
-            int act;
-            int xg;
+            int xg, act;
+            String separator = ";";
+
 
             try {
                 reader.readLine();  //step over header
 
                 while ((line = reader.readLine()) != null) {
+                    if (step1Read==1) {
+                        // détecter le séparateur
+                        String[] test = line.split(separator);
+                        if (test.length==1) {
+                            System.out.println("Changement séparateur vers ','");
+                            separator = ",";
+                        }
+                    }
                     step1Read++;
                     //System.out.println(TAG+ "line="+line);
-                    //String[] tokens = line.split(";");  //split by ';'
-                    String[] tokens = line.split(",");  //temp split by ','
+                    String[] tokens = line.split(separator+"(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);  //regex magique
                     String systeme = tokens[SYSTEME];
 
                     if(tokens[OPERAT].equals(opLong) && (systeme.contains("LTE") || systeme.contains("NR"))) {
@@ -680,8 +688,8 @@ public class A_Generateur_ANFR {
             try {
                 while ((line = reader.readLine()) != null && count<2) {
                     count++;
-                    //String[] tokens = line.split(";");  // Split by ';'
-                    String[] tokens = line.split(",");  //temp Split by ','
+                    String[] tokens = line.split(";");  // Split by ';'
+                    //String[] tokens = line.split(",");  //temp Split by ','
                     if (count==1) {
                         //ligne d'en-tête
                         for (byte i = 0; i <= tokens.length-1; i++) {
@@ -724,9 +732,14 @@ public class A_Generateur_ANFR {
                         }
                     } else if (count==2) {
                         //1ère ligne de données
+                        if (tokens[DATE_MAJ].contains("T")) {
+                            //String[] tk = tokens[DATE_MAJ].split("T");
+                            //tokens[DATE_MAJ] = tk[0];
+                            tokens[DATE_MAJ] = tokens[DATE_MAJ].split("T")[0];    //supprimer le 'T00:00:00'
+                        }
                         System.out.println("Dataset=" + tokens[DATE_MAJ]);
                         String splitter;
-                        byte indexY,indexM=1,indexD;
+                        byte indexY, indexM=1, indexD;
                         if (tokens[DATE_MAJ].contains("/")) {
                             splitter = "/";     //FORMAT DD/MM/YYYY
                             indexY = 2;
