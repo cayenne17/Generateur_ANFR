@@ -1273,7 +1273,7 @@ var addressPoints = [
 [-20.9133, 55.6142, 99999, 1472275, "STADE MUNICIPAL DU BOCAGE 97441 STE SUZANNE", "2100 MHz (4G) [ORA]", "-", 0],
 ];
 
-var update = ['25/11/2023'];
+var update = ['23/11/2023'];
 var dataset = ['S47 2023 [100]'];
 var news = ['1459'];
 var acti = ['903'];
