@@ -64,7 +64,8 @@
 		/////IGN
 		
 		// Plan IGN
-		var PlanIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}',	{
+		//var PlanIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}',	{
+		var PlanIGN = L.tileLayer('https://data.geopf.fr/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}',	{
 			ignApiKey: 'decouverte',
 			ignLayer: 'GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2',
 			style: 'normal',
@@ -74,7 +75,8 @@
 		});
 
 		// Photographies aériennes Ortho IGN
-		var OrthoIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
+		//var OrthoIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
+		var OrthoIGN = L.tileLayer('https://data.geopf.fr/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
 			ignApiKey: 'decouverte',
 			ignLayer: 'ORTHOIMAGERY.ORTHOPHOTOS',
 			style: 'normal',
@@ -83,7 +85,8 @@
 			attribution: '&copy; <a target="_blank" rel="noreferrer noopener" href="https://www.ign.fr"><img class="gp-control-attribution-image" src="https://wxs.ign.fr/static/logos/IGN/IGN.gif" title="Institut national de l\'information géographique et forestière" style="height: 30px; width: 30px;"></a> '
 		});
 		
-		var OrthoIGN_city = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
+		//var OrthoIGN_city = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
+		var OrthoIGN_city = L.tileLayer('https://data.geopf.fr/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
 			ignApiKey: 'topographie',
 			ignLayer: 'GEOGRAPHICALNAMES.NAMES',
 			//ignLayer: 'TRANSPORTNETWORKS.ROADS',
@@ -95,7 +98,8 @@
 			//attribution: '&copy; <a target="_blank" rel="noreferrer noopener" href="https://www.ign.fr"><img class="gp-control-attribution-image" src="https://wxs.ign.fr/static/logos/IGN/IGN.gif" title="Institut national de l\'information géographique et forestière" style="height: 30px; width: 30px;"></a> '
 		});
 		
-		var OrthoIGN_street = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
+		//var OrthoIGN_street = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
+		var OrthoIGN_street = L.tileLayer('https://data.geopf.fr/wmts?'+'&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+'&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+'&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}', {
 			ignApiKey: 'topographie',
 			//ignLayer: 'GEOGRAPHICALNAMES.NAMES',
 			ignLayer: 'TRANSPORTNETWORKS.ROADS',
