@@ -32,7 +32,7 @@ public class A_ANFR_Downloader {
             Main.writeLog(TAG+" Erreur lors du téléchargement");
             lignes = 0;
         } else {
-            if (li >= lignesPrec) {
+            //if (li >= lignesPrec) {
                 Main.writeLog(TAG + li+" lignes téléchargées");
                 File f1 = new File(Main.ABS_PATH + "/input/ANFR.csv");   //éffacer le fichier précédent
                 f1.delete();
@@ -45,11 +45,11 @@ public class A_ANFR_Downloader {
                 }
 
                 lignes = li;    //nb de lignes. Le faire en dernier pour que le check de "lignes > 0 dans Main" puisse confirmer que tout s'est bien passé
-            } else {
-                lignes = 0;
-                System.out.println(TAG+"Erreur: "+li+" téléchargées < "+lignesPrec+ " préc.");
-                Main.writeLog(TAG+"Erreur: "+li+" téléchargées < "+lignesPrec+ " préc.");
-            }
+            //} else {
+	    //    lignes = 0;
+            //    System.out.println(TAG+"Erreur: "+li+" téléchargées < "+lignesPrec+ " préc.");
+            //    Main.writeLog(TAG+"Erreur: "+li+" téléchargées < "+lignesPrec+ " préc.");
+            //}
         }
 
         System.out.println("Terminé: "+lignes+" lignes téléchargées !");
