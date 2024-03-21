@@ -406,6 +406,8 @@ public class A_Generateur_ANFR {
                         }
 
                         //hauteur. Attention ici c'est la hauteur du pylone et non celle de l'antenne
+			tokens[HAUTEUR] = tokens[HAUTEUR].replace("\"", "");    //supprimer d'éventuels "
+			tokens[HAUTEUR] = tokens[HAUTEUR].replace(",", ".");    //supprimer éventuelle virgule
                         double haut = Double.parseDouble(tokens[HAUTEUR]);
                         if (haut > 70.0)
                             haut = 70.0;
