@@ -1671,7 +1671,7 @@ var addressPoints = [
 [16.24, -61.5314, 99999, 2299263, "Chemin des petites abymes 97110 POINTE A PITRE", "800 MHz (4G) [OUTR], 1800 MHz (4G) [OUTR], 2600 MHz (4G) [OUTR]", "-", 0],
 ];
 
-var update = ['26/07/2024'];
+var update = ['02/08/2024'];
 var dataset = ['S30 2024 [134]'];
 var news = ['1337'];
 var acti = ['841'];
