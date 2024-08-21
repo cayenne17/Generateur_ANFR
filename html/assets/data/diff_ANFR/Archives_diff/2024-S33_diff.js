@@ -1279,14 +1279,14 @@ var addressPoints = [
 [47.5136, 4.5839, 20801, 2001964, "Chemin du Champ Millot (Champ Millot) 21150 GISSEY SOUS FLAVIGNY", "-", "700 MHz (4G)", 0],
 [45.3322, 4.8903, 20801, 2621275, "141 la Vieille Route 38150 BOUGE CHAMBALUD", "-", "700 MHz (4G), 800 MHz (4G)", 0],
 [43.5417, 0.6508, 20801, 2909562, "Chemin du Village 32450 TRAVERSERES", "-", "700 MHz (4G), 800 MHz (4G)", 0],
-[48.2728, 3.2764, 20810, 558190, "(Les Courtes) 89140 EVRY", "800 MHz (4G)", "-", 0],
 [48.5247, 2.2792, 20810, 707530, "Centre d'essais bat l38 91510 LARDY", "2100 MHz (4G)", "-", 0],
 [48.7247, 7.3383, 20810, 863152, "Château du Haut Barr Restaurant 67700 SAVERNE", "800 MHz (4G)", "-", 0],
 [47.2431, 6.0228, 20810, 1622927, "21 r du petit Battant 25000 BESANCON", "3500 MHz (5G)", "-", 0],
 [45.4, 6.6564, 99999, 1743840, "MONT BEL AIR (Le Grand Pralin) 73120 COURCHEVEL", "700&nbsp;MHz (4G), 800&nbsp;MHz, 1800&nbsp;MHz, 2100&nbsp;MHz (4G), 2600&nbsp;MHz, 2100&nbsp;MHz (5G) [SFR], 700&nbsp;MHz (4G), 800&nbsp;MHz, 1800&nbsp;MHz, 2100&nbsp;MHz (4G), 2600&nbsp;MHz, 2100&nbsp;MHz (5G) [Bouygues]", "-", 0],
-[43.4642, 6.5461, 20810, 2660587, "CHEM DES HAUTES PINEDES CAMPING LES CIG (LES VALETTES) 83490 LE MUY", "700 MHz (4G), 800 MHz (4G), 1800 MHz (4G), 2100 MHz (4G), 2600 MHz (4G), 2100 MHz (5G), 3500 MHz (5G)", "-", 0],
 [48.3453, -1.2861, 99999, 2714590, "Z.A. DES ESTUAIRES près de la N12 35133 ROMAGNE", "700&nbsp;MHz (4G), 800&nbsp;MHz, 1800&nbsp;MHz, 2100&nbsp;MHz (4G), 2600&nbsp;MHz, 2100&nbsp;MHz (5G), 3500&nbsp;MHz [SFR], 700&nbsp;MHz (4G), 800&nbsp;MHz, 1800&nbsp;MHz, 2100&nbsp;MHz (4G), 2600&nbsp;MHz, 2100&nbsp;MHz (5G), 3500&nbsp;MHz [Bouygues]", "-", 0],
 [43.1872, -0.1072, 20810, 2924624, "Chemin rural dit de Darré Gratian Chemin rural dit d'Incaux 64530 PONTACQ", "3500 MHz (5G)", "-", 0],
+[49.6092, 4.7931, 20810, 335857, "chem rural dit de la carriere (La Carrière) 08160 VENDRESSE", "-", "700 MHz (4G), 800 MHz (4G)", 0],
+[48.8386, 2.3786, 20810, 1393195, "8 Bd de Bercy Palais Omnisport 75012 PARIS 12", "-", "1800 MHz (4G), 2100 MHz (4G), 2600 MHz (4G), 3500 MHz (5G)", 0],
 [48.9719, 2.3697, 20815, 1542904, "ALLEE BORIS VIAN 93380 PIERREFITTE SUR SEINE", "700 MHz (4G), 1800 MHz (4G), 2100 MHz (4G), 2600 MHz (4G), 700 MHz (5G), 3500 MHz (5G)", "-", 0],
 [45.7739, 4.8453, 20815, 1731540, "33 rue de Crèqui 69006 LYON 06", "700 MHz (4G), 1800 MHz (4G), 2100 MHz (4G), 2600 MHz (4G), 700 MHz (5G), 3500 MHz (5G)", "-", 0],
 [47.9064, -4.1283, 20815, 2272183, "KEROUGUY 29950 GOUESNACH", "700 MHz (4G), 1800 MHz (4G), 2100 MHz (4G), 2600 MHz (4G), 700 MHz (5G), 3500 MHz (5G)", "-", 0],
@@ -1302,13 +1302,13 @@ var addressPoints = [
 [45.9325, 5.2631, 20820, 2028266, "620 AUX FROMENTAUX 01500 ST MAURICE DE REMENS", "-", "700 MHz (4G), 2600 MHz (4G)", 0],
 ];
 
-var update = ['20/08/2024'];
+var update = ['21/08/2024'];
 var dataset = ['S33 2024 [137]'];
 var news = ['1035'];
 var acti = ['813'];
 var news5 = ['654'];
 var acti5 = ['403'];
-var supp = ['150'];
-var off = ['8'];
-var supp5 = ['41'];
-var off5 = ['0'];
+var supp = ['144'];
+var off = ['13'];
+var supp5 = ['39'];
+var off5 = ['1'];
