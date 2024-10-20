@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 /**************************************************************************************
  * Created by Tristan on 09/04/21.
+ * Updated by Tristan on 11/10/22 : Mode 1 point par opérateur (carte multi-layers)
  *
  * Recherche les différences entre 2 bases ANFR
  * Pré-requis: 2 bases SQL dans /SQL/historique (avec un numéro de version différent)
@@ -133,7 +134,7 @@ public class B_Generateur_ANFR_Diff {
             writeFile(jsFileName,"var supp5"+varSuffix+" = ['"+dbAa.numberRowsW("Nouvelles", "xG = '5' AND Flag = 'N'")+"'];");
             writeFile(jsFileName,"var off5"+varSuffix+" = ['"+dbAa.numberRowsW("Nouvelles", "xG = '5' AND Flag = 'A'")+"'];");
 
-
+            
             dbAa.close();   //fermer la connexion
         }
     }
@@ -185,40 +186,47 @@ public class B_Generateur_ANFR_Diff {
     protected void parseMethod2() {
         dbAa.delete("OLD"); //utile car on revient ici une 2e fois pour les suppresions/extinctions
         dbAa.delete("NEW"); //utile car on revient ici une 2e fois pour les suppresions/extinctions
-        copyData("20801");
+        copyData("20801", "", "");
+        copyData("99999", " WHERE OP = 'ORA' ", "20801");
         parseData("20801");
         dbAa.delete("OLD");
         dbAa.delete("NEW");
-        copyData("20810");
+        copyData("20810", "", "");
+        copyData("99999", " WHERE OP = 'SRR' ", "20810");
         parseData("20810");
         dbAa.delete("OLD");
         dbAa.delete("NEW");
-        copyData("20815");
+        copyData("20815", "", "");
+        copyData("99999", " WHERE OP = 'FREE' ", "20815");
         parseData("20815");
         dbAa.delete("OLD");
         dbAa.delete("NEW");
-        copyData("20820");
+        copyData("20820", "", "");
         parseData("20820");
         dbAa.delete("OLD");
         dbAa.delete("NEW");
-        copyData("99999");
+        copyData("99999", " WHERE OP!='ORA' AND OP!='SRR' AND OP!='FREE' ", "");
         parseData("99999");
     }
 
 
 
     // envoyer les données dans une base unique
-    private void copyData(String oper) {
+    private void copyData(String oper, String where, String overridePlmn) {
         int read=0;
         int lignes= dbHt_1.numberRows(oper) + dbHt_2.numberRows(oper);
-        ResultSet rs = dbHt_1.queryRs("SELECT * FROM '"+oper+"' ORDER BY AnfrID ASC");
         try {
+            ResultSet rs = dbHt_1.queryRs("SELECT * FROM '"+oper+"'"+where+" ORDER BY AnfrID ASC");
             while (rs.next()) {
                 updateProgressBar(lignes, read);
                 read++;
                 String op = oper;
-                if (oper.equals("99999"))
-                    op = rs.getString(2);
+                if (oper.equals("99999")) {
+                    if (overridePlmn.length() > 0)
+                        op = overridePlmn;
+                    else
+                        op = rs.getString(2);
+                }
                 String anfrData = rs.getString(6);
                 anfrData = anfrData.replace("'","''");  //escape single quote before SQL insert !
                 dbAa.sql_query("INSERT INTO NEW VALUES (NULL, '"+op+"', '"+rs.getString(3)+"', '"+rs.getString(4)+"', "+rs.getInt(5)+", '"+ anfrData +"', '"+rs.getString(7)+"', '"+rs.getString(8)+"', '"+rs.getString(9)+"', '"+rs.getString(10)+"', '"+rs.getString(11)+"', "+rs.getInt(12)+")");
@@ -226,14 +234,18 @@ public class B_Generateur_ANFR_Diff {
             rs.close();
             System.out.println(oper+": "+read+" lignes écrites                             ");
 
-            ResultSet rs2 = dbHt_2.queryRs("SELECT * FROM '"+oper+"' ORDER BY AnfrID ASC");
+            ResultSet rs2 = dbHt_2.queryRs("SELECT * FROM '"+oper+"'"+where+" ORDER BY AnfrID ASC");
             int read2=0;
             while (rs2.next()) {
                 updateProgressBar(lignes, (read+read2));
                 read2++;
                 String op = oper;
-                if (oper.equals("99999"))
-                    op = rs2.getString(2);
+                if (oper.equals("99999")) {
+                    if (overridePlmn.length() > 0)
+                        op = overridePlmn;
+                    else
+                        op = rs2.getString(2);
+                }
                 String anfrData = rs2.getString(6);
                 anfrData = anfrData.replace("'","''");  //escape single quote before SQL insert !
                 dbAa.sql_query("INSERT INTO OLD VALUES (NULL, '"+op+"', '"+rs2.getString(3)+"', '"+rs2.getString(4)+"', "+rs2.getInt(5)+", '"+ anfrData +"', '"+rs2.getString(7)+"', '"+rs2.getString(8)+"', '"+rs2.getString(9)+"', '"+rs2.getString(10)+"', '"+rs2.getString(11)+"', "+rs2.getInt(12)+")");
@@ -289,17 +301,18 @@ public class B_Generateur_ANFR_Diff {
     }
 
 
-    //récupérer les données manquantes
+    //récupérer les données complémentaires
     private void rechSql(String oper, int anfrId) {
         sqlData = "";
         sqlLat = 0.0;
         sqlLon = 0.0;
-        ResultSet rs = dbHt_1.queryRs("SELECT * FROM '"+oper+"' WHERE AnfrID = "+anfrId);
+        //ResultSet rs = dbHt_1.queryRs("SELECT AnfrData, LAT, LON FROM '"+oper+"' WHERE AnfrID = "+anfrId);
+        ResultSet rs = dbAa.queryRs("SELECT AnfrData, LAT, LON FROM NEW WHERE AnfrID = "+anfrId);
         try {
             if (rs.next()) {
-                sqlData= rs.getString(6);
-                sqlLat = rs.getDouble(7);
-                sqlLon = rs.getDouble(8);
+                sqlData= rs.getString(1);
+                sqlLat = rs.getDouble(2);
+                sqlLon = rs.getDouble(3);
             }
             rs.close();
         } catch (SQLException e) {
@@ -308,27 +321,30 @@ public class B_Generateur_ANFR_Diff {
     }
 
 
-
-
-    // écrire (avec gestion multi-opérateur par site)
+    // écrire (avec gestion mono-opérateur par site)
     private void writeData(int ajout) {
+        writeData(20801, ajout, 0);
+        writeData(20810, ajout, 0);
+        writeData(20815, ajout, 0);
+        writeData(20820, ajout, 0);
+        writeData(99999, ajout, 1);
+        writeData(99999, ajout, 2);
+        writeData(99999, ajout, 3);
+        writeData(99999, ajout, 4);
+    }
+
+    private void writeData(int plmn, int ajout, int groupe) {
         int anfrIdCount=0;
-        ResultSet rs0 = dbAa.queryRs("SELECT DISTINCT AnfrID FROM Nouvelles");  //récupérer les ANFR ID 1 existants
+        ResultSet rs0 = dbAa.queryRs("SELECT DISTINCT AnfrID FROM Nouvelles WHERE PLMN = "+plmn + requestSuffix(groupe));  //récupérer les ANFR ID
         try {
             while (rs0.next()) {
                 anfrIdCount++;
                 int anfrId = rs0.getInt(1);
-                ResultSet rs1 = dbAa.queryRs("SELECT DISTINCT PLMN FROM Nouvelles WHERE AnfrID = "+anfrId); //récupérer les Opérateurs présents sur le site
-                int nbPlmn=0;
-                while (rs1.next()) {
-                    nbPlmn++;
-                }
-                rs1.close();
 
-                if (nbPlmn>1)
-                    writeMultiPlmn(ajout, anfrId);
+                if (plmn==99999)
+                    writeOm(ajout, anfrId, groupe);
                 else
-                    writeMonoPlmn(ajout, anfrId);
+                    writeMonoPlmn(ajout, anfrId, plmn);
             }
             rs0.close();
         } catch (SQLException e) {
@@ -337,22 +353,33 @@ public class B_Generateur_ANFR_Diff {
         System.out.println(anfrIdCount+" AnfrId détectés");
     }
 
+    private String requestSuffix(int groupe) {
+        if (groupe==1)
+            return " AND (OP = 'DIGI' OR OP = 'MAOR' OR OP = 'VITI' OR OP = 'GLOB')";
+        else if (groupe==2)
+            return " AND (OP = 'OUTR' OR OP = 'TLOI' OR OP = 'ONAT' OR OP = 'SPM')";
+        else if (groupe==3)
+            return " AND (OP = 'DAU' OR OP = 'ZEOP')";
+        else if (groupe==4)
+            return " AND (OP = 'PMT' OR OP = 'BPT' OR OP = 'GOPT')";
+        else
+            return "";
+    }
 
-    protected void writeMonoPlmn(int ajout, int anfrId) {
-        int plmn = -1;
+
+    protected void writeMonoPlmn(int ajout, int anfrId, int plmn) {
         String anfrData = "";
         String systDecl = "";
         String systActi = "";
         String lat="0.0", lon="0.0";
         String flag;
 
-        ResultSet rs = dbAa.queryRs("SELECT * FROM Nouvelles WHERE AnfrID = "+anfrId);
+        ResultSet rs = dbAa.queryRs("SELECT * FROM Nouvelles WHERE AnfrID = "+anfrId+" AND PLMN = "+plmn);
         try {
             while (rs.next()) {
                 String op=rs.getString(11);  // op dans la colonne CP pour l'outre-mer
                 anfrId = rs.getInt(3);
                 flag = rs.getString(10);
-                plmn = rs.getInt(2);
                 lat = rs.getString(5);
                 lon = rs.getString(6);
                 anfrData = rs.getString(4);
@@ -390,8 +417,9 @@ public class B_Generateur_ANFR_Diff {
 
 
 
-    protected void writeMultiPlmn(int ajout, int anfrId) {
+    protected void writeOm(int ajout, int anfrId, int groupe) {
         int plmn;
+        String op = "";
         String anfrData = "";
         String systDecl = "";
         String systActi = "";
@@ -401,7 +429,7 @@ public class B_Generateur_ANFR_Diff {
         boolean act, decl;  //flage pour sacoir s'il y a eu activité pour un opérateur précis (et donc ajouter ou pas le suffice MHz)
 
 
-        ResultSet rs0 = dbAa.queryRs("SELECT DISTINCT PLMN FROM Nouvelles WHERE AnfrID = " + anfrId);
+        ResultSet rs0 = dbAa.queryRs("SELECT DISTINCT PLMN FROM Nouvelles WHERE PLMN = 99999 AND AnfrID = " + anfrId);
         try {
             while (rs0.next()) {
                 plmn = rs0.getInt(1);
@@ -417,6 +445,8 @@ public class B_Generateur_ANFR_Diff {
                     plmn = rs.getInt(2);
                     systXg=rs.getString(7);
                     short freq = rs.getShort(9);
+                    if (plmn==99999)
+                        op = rs.getString(11);
 
                     if (flag.equals("A")) {
                         act = true;
@@ -437,9 +467,9 @@ public class B_Generateur_ANFR_Diff {
                 rs.close();
 
                 if (act)
-                    systActi = systActi + " [" + convertOper(plmn) + "]";
+                    systActi = systActi + " [" + op + "]";
                 if (decl)
-                    systDecl = systDecl + " [" + convertOper(plmn) + "]";
+                    systDecl = systDecl + " [" + op + "]";
             }
 
             if (systActi.length()==0)
@@ -448,7 +478,7 @@ public class B_Generateur_ANFR_Diff {
             if (systDecl.length()==0)
                 systDecl = "-";
 
-            writeFile(jsFileName,"[" + lat + ", " + lon + ", " + 99999 +", "+anfrId + ", \"" + anfrData + "\", \""+ systDecl  + "\", \""+ systActi + "\", "+ajout+"],");
+            writeFile(jsFileName,"[" + lat + ", " + lon + ", " + 9999+""+groupe +", "+anfrId + ", \"" + anfrData + "\", \""+ systDecl  + "\", \""+ systActi + "\", "+ajout+"],");
             rs0.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -476,10 +506,10 @@ public class B_Generateur_ANFR_Diff {
     //afficher des statistiques
     protected void stats() {
         System.out.println();
-        System.out.println("Declarat 4G " + dbAa.numberRowsW("Nouvelles", "xG = '4' AND Flag = 'N'"));
-        System.out.println("Declarat 5G " + dbAa.numberRowsW("Nouvelles", "xG = '5' AND Flag = 'N'"));
-        System.out.println("Activat. 4G " + dbAa.numberRowsW("Nouvelles", "xG = '4' AND Flag = 'A'"));
-        System.out.println("Activat. 5G " + dbAa.numberRowsW("Nouvelles", "xG = '5' AND Flag = 'A'"));
+        System.out.println("Declarat 4G " + dbAa.numberRowsQ("SELECT COUNT(*) AS rowcount FROM Nouvelles WHERE xG = 4 AND Flag = 'N'"));
+        System.out.println("Declarat 5G " + dbAa.numberRowsQ("SELECT COUNT(*) AS rowcount FROM Nouvelles WHERE xG = 5 AND Flag = 'N'"));
+        System.out.println("Activat. 4G " + dbAa.numberRowsQ("SELECT COUNT(*) AS rowcount FROM Nouvelles WHERE xG = 4 AND Flag = 'A'"));
+        System.out.println("Activat. 5G " + dbAa.numberRowsQ("SELECT COUNT(*) AS rowcount FROM Nouvelles WHERE xG = 5 AND Flag = 'A'"));
 
         System.out.println("Dec 4G  700 " + dbAa.numberRowsW("Nouvelles", "xG = '4' AND Flag = 'N' AND Syst = 700"));
         System.out.println("Dec 4G  800 " + dbAa.numberRowsW("Nouvelles", "xG = '4' AND Flag = 'N' AND Syst = 800"));
