@@ -1209,7 +1209,7 @@ var addressPoints = [
 [5.2656, -54.2467, 99992, 2037294, "Route du Fleuve 97320 ST LAURENT DU MARONI", "800&nbsp;MHz, 1800&nbsp;MHz, 2600&nbsp;MHz [OUTR]", "-", 0],
 ];
 
-var update = ['21/11/2024'];
+var update = ['29/11/2024'];
 var dataset = ['S47 2024 [151]'];
 var news = ['920'];
 var acti = ['648'];
