@@ -100,7 +100,7 @@ public class A_Generateur_ANFR {
                 readAnfr("ONAT", "ONATI", true);
                 readAnfr("ORA", "ORANGE", true);
                 readAnfr("OUTR", "OUTREMER TELECOM", true);
-                readAnfr("PMT", "PMT/VODAFONE", true);
+                readAnfr("PMT", "PMT-VODAFONE", true);
                 readAnfr("SPM", "SPM TELECOM", true);
                 readAnfr("SRR", "SRR", true);
                 readAnfr("TLOI", "TELCO OI", true);
