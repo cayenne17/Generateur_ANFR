@@ -682,13 +682,22 @@ public class A_Generateur_ANFR {
     private void setColAndGetDataset() {
         int count = 0;
         File file = new File(Main.ABS_PATH +"/input/ANFR.csv");
-        InputStream is;
         try {
-            is = new FileInputStream(file.getAbsolutePath());
+            InputStream is = new FileInputStream(file.getAbsolutePath());
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            String separator = ";";
             String line = "";
             try {
                 while ((line = reader.readLine()) != null && count<2) {
+                    if (count==0) {
+                        // détecter le séparateur
+                        String[] test = line.split(separator);
+                        if (test.length==1) {
+                            System.out.println("Changement séparateur vers ','");
+                            separator = ",";
+                        }
+                    }
+
                     count++;
                     String[] tokens = line.split(";");  // Split by ';'
                     //String[] tokens = line.split(",");  //temp Split by ','
@@ -696,31 +705,31 @@ public class A_Generateur_ANFR {
                         //ligne d'en-tête
                         for (byte i = 0; i <= tokens.length-1; i++) {
                             //System.out.println("index "+i+"=" + tokens[i]);
-                            if (tokens[i].equals("adm_lb_nom"))
+                            if (tokens[i].equals("adm_lb_nom")||tokens[i].equals("Opérateur"))
                                 OPERAT = i;
-                            else if (tokens[i].equals("sup_id"))
+                            else if (tokens[i].equalsIgnoreCase("sup_id"))
                                 SUP_ID = i;
-                            else if (tokens[i].equals("emr_lb_systeme"))
+                            else if (tokens[i].equals("emr_lb_systeme")||tokens[i].equals("Système"))
                                 SYSTEME = i;
-                            else if (tokens[i].equals("emr_dt") || tokens[i].equals("emr_dt_service"))
+                            else if (tokens[i].contains("emr_dt")||tokens[i].equals("Mise en service déclaré"))  //emr_dt ou emr_dt_service
                                 SERVICE = i;
-                            else if (tokens[i].equals("sta_nm_dpt"))
+                            else if (tokens[i].equalsIgnoreCase("sta_nm_dpt"))
                                 C_DEPT = i;
-                            else if (tokens[i].equals("code_insee"))
+                            else if (tokens[i].equalsIgnoreCase("code_insee"))
                                 C_INSEE = i;
-                            else if (tokens[i].equals("date_maj"))
+                            else if (tokens[i].equalsIgnoreCase("date_maj"))
                                 DATE_MAJ = i;
                             else if (tokens[i].equals("sta_nm_anfr"))
                                 STA_ID = i;
                             else if (tokens[i].equals("sup_nm_haut"))
                                 HAUTEUR = i;
-                            else if (tokens[i].equals("adr_lb_lieu"))
+                            else if (tokens[i].equals("adr_lb_lieu")||tokens[i].equals("Adresse"))
                                 ADR_L = i;
-                            else if (tokens[i].equals("adr_lb_add1"))
+                            else if (tokens[i].equals("adr_lb_add1")||tokens[i].equals("Adresse 1"))
                                 ADR_1 = i;
-                            else if (tokens[i].equals("adr_lb_add2"))
+                            else if (tokens[i].equals("adr_lb_add2")||tokens[i].equals("Adresse 2"))
                                 ADR_2 = i;
-                            else if (tokens[i].equals("adr_nm_cp"))
+                            else if (tokens[i].equals("adr_nm_cp")||tokens[i].equals("Code postal"))
                                 C_POST = i;
                             else if (tokens[i].equals("coordonnees"))
                                 COORD = i;
