@@ -699,8 +699,6 @@ public class A_Generateur_ANFR {
                     }
 
                     count++;
-                    String[] tokens = line.split(";");  // Split by ';'
-                    //String[] tokens = line.split(",");  //temp Split by ','
                     if (count==1) {
                         //ligne d'en-tête
                         for (byte i = 0; i <= tokens.length-1; i++) {
