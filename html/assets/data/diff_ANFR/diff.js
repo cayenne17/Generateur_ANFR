@@ -917,7 +917,7 @@ var addressPoints = [
 [-17.7225, -149.315, 99992, 130633, "chateau d'eau de taravao (Taravao) 98722 TAIARAPU EST", "800&nbsp;MHz, 1800&nbsp;MHz, 2100&nbsp;MHz (4G) [ONAT]", "-", 0],
 ];
 
-var update = ['27/07/2026'];
+var update = ['24/07/2026'];
 var dataset = ['S30 2026 [235]'];
 var news = ['547'];
 var acti = ['704'];
