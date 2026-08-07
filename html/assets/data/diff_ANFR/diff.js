@@ -1673,7 +1673,7 @@ var addressPoints = [
 [-21.3331, 165.5683, 99994, 3270161, "(NEAOUA CENTRALE ENERCAL) 98816 HOUAILOU", "800&nbsp;MHz [GOPT]", "-", 0],
 ];
 
-var update = ['07/08/2026'];
+var update = ['06/08/2026'];
 var dataset = ['S32 2026 [237]'];
 var news = ['665'];
 var acti = ['449'];
