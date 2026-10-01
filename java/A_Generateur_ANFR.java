@@ -746,7 +746,9 @@ public class A_Generateur_ANFR {
                             //String[] tk = tokens[DATE_MAJ].split("T");
                             //tokens[DATE_MAJ] = tk[0];
                             tokens[DATE_MAJ] = tokens[DATE_MAJ].split("T")[0];    //supprimer le 'T00:00:00'
-                        }
+                        } else if (tokens[DATE_MAJ].contains(" ")) { //exemple: 2026-10-01 15:15:17.482142
+				tokens[DATE_MAJ] = tokens[DATE_MAJ].split(" ")[0];    //supprimer le ' 15:15:17.482142'
+			}
                         System.out.println("Dataset=" + tokens[DATE_MAJ]);
                         String splitter;
                         byte indexY, indexM=1, indexD;
